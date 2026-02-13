@@ -199,7 +199,7 @@ path = '$target_settings'
 try:
     with open(path) as f:
         settings = json.load(f)
-except:
+except Exception:
     settings = {}
 
 hooks = settings.get('hooks', {})
@@ -744,7 +744,7 @@ path = '$OTHER_SETTINGS'
 try:
     with open(path) as f:
         settings = json.load(f)
-except:
+except Exception:
     exit(0)
 
 hooks = settings.get('hooks', {})
@@ -790,7 +790,7 @@ import json
 try:
     c = json.load(open('$INSTALL_DIR/config.json'))
     print(c.get('active_pack', 'peon'))
-except:
+except Exception:
     print('peon')
 " 2>/dev/null)
   PACK_DIR="$INSTALL_DIR/packs/$ACTIVE_PACK"

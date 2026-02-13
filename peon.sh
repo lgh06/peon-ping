@@ -389,7 +389,7 @@ q = shlex.quote
 try:
     cfg = json.load(open('$config'))
     mn = cfg.get('mobile_notify', {})
-except:
+except Exception:
     mn = {}
 if not mn or not mn.get('enabled', True):
     print('MOBILE_SERVICE=')
@@ -479,7 +479,7 @@ try:
         print(f'peon-ping: mobile notifications ' + ('on' if enabled else 'off') + f' ({svc})')
     else:
         print('peon-ping: mobile notifications not configured')
-except:
+except Exception:
     print('peon-ping: desktop notifications on')
     print('peon-ping: mobile notifications not configured')
 "
@@ -492,7 +492,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 cfg['desktop_notifications'] = True
 json.dump(cfg, open(config_path, 'w'), indent=2)
@@ -505,7 +505,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 cfg['desktop_notifications'] = False
 json.dump(cfg, open(config_path, 'w'), indent=2)
@@ -523,7 +523,7 @@ import json, os, glob
 config_path = '$CONFIG'
 try:
     active = json.load(open(config_path)).get('active_pack', 'peon')
-except:
+except Exception:
     active = 'peon'
 packs_dir = '$PEON_DIR/packs'
 for d in sorted(os.listdir(packs_dir)):
@@ -561,7 +561,7 @@ if pack_arg not in names:
     sys.exit(1)
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 cfg['active_pack'] = pack_arg
 json.dump(cfg, open(config_path, 'w'), indent=2)
@@ -580,7 +580,7 @@ import json, os, glob
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 active = cfg.get('active_pack', 'peon')
 packs_dir = '$PEON_DIR/packs'
@@ -623,7 +623,7 @@ remove_arg = '$REMOVE_ARG'
 
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 active = cfg.get('active_pack', 'peon')
 
@@ -695,7 +695,7 @@ for pack in to_remove:
 # Clean pack_rotation in config
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 rotation = cfg.get('pack_rotation', [])
 if rotation:
@@ -732,7 +732,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 cfg['mobile_notify'] = {
     'enabled': True,
@@ -765,7 +765,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 cfg['mobile_notify'] = {
     'enabled': True,
@@ -789,7 +789,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 cfg['mobile_notify'] = {
     'enabled': True,
@@ -807,7 +807,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 mn = cfg.get('mobile_notify', {})
 mn['enabled'] = False
@@ -822,7 +822,7 @@ import json
 config_path = '$CONFIG'
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 mn = cfg.get('mobile_notify', {})
 if not mn.get('service'):
@@ -840,7 +840,7 @@ import json
 try:
     cfg = json.load(open('$CONFIG'))
     mn = cfg.get('mobile_notify', {})
-except:
+except Exception:
     mn = {}
 if not mn or not mn.get('service'):
     print('peon-ping: mobile notifications not configured')
@@ -865,7 +865,7 @@ import json, sys
 try:
     cfg = json.load(open('$CONFIG'))
     mn = cfg.get('mobile_notify', {})
-except:
+except Exception:
     mn = {}
 if not mn or not mn.get('service') or not mn.get('enabled', True):
     print('peon-ping: mobile notifications not configured or disabled')
@@ -916,7 +916,7 @@ config_path = '$CONFIG'
 
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 active_pack = cfg.get('active_pack', 'peon')
 
@@ -956,7 +956,7 @@ config_path = '$CONFIG'
 # Load config
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 volume = cfg.get('volume', 0.5)
 active_pack = cfg.get('active_pack', 'peon')
@@ -1116,7 +1116,7 @@ state_dirty = False
 # --- Load config ---
 try:
     cfg = json.load(open(config_path))
-except:
+except Exception:
     cfg = {}
 
 if str(cfg.get('enabled', True)).lower() == 'false':
@@ -1166,7 +1166,7 @@ perm_mode = event_data.get('permission_mode', '')
 # --- Load state ---
 try:
     state = json.load(open(state_file))
-except:
+except Exception:
     state = {}
 
 # --- Agent detection ---
@@ -1341,7 +1341,7 @@ if category and not paused:
             pack_root = os.path.realpath(pack_dir) + os.sep
             if candidate.startswith(pack_root):
                 sound_file = candidate
-    except:
+    except Exception:
         pass
 
 # --- Write state once ---
