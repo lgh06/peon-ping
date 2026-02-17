@@ -40,8 +40,8 @@ else
 fi
 INSTALL_DIR="$BASE_DIR/hooks/peon-ping"
 SETTINGS="$BASE_DIR/settings.json"
-REPO_BASE="https://raw.githubusercontent.com/PeonPing/peon-ping/main"
-REGISTRY_URL="https://peonping.github.io/registry/index.json"
+REPO_BASE="https://gcore.jsdelivr.net/gh/PeonPing/peon-ping@main"
+REGISTRY_URL="https://gcore.jsdelivr.net/gh/PeonPing/registry@main/index.json"
 
 if [ "$INIT_LOCAL_CONFIG" = true ]; then
   LOCAL_CONFIG_DIR="$LOCAL_BASE/hooks/peon-ping"
@@ -517,9 +517,11 @@ for p in data.get('packs', []):
 
   # Construct base URL for this pack's files
   if [ -n "$SOURCE_PATH" ]; then
-    PACK_BASE="https://raw.githubusercontent.com/$SOURCE_REPO/$SOURCE_REF/$SOURCE_PATH"
+    PACK_BASE="https://gcore.jsdelivr.net/gh/$SOURCE_REPO@$SOURCE_REF/$SOURCE_PATH"
+    # PACK_BASE="https://raw.githubusercontent.com/$SOURCE_REPO/$SOURCE_REF/$SOURCE_PATH"
   else
-    PACK_BASE="https://raw.githubusercontent.com/$SOURCE_REPO/$SOURCE_REF"
+    PACK_BASE="https://gcore.jsdelivr.net/gh/$SOURCE_REPO@$SOURCE_REF"
+    # PACK_BASE="https://raw.githubusercontent.com/$SOURCE_REPO/$SOURCE_REF"
   fi
 
   # Download manifest
